@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
+use Cake\Validation\Validator;
 
 
 /**
@@ -12,14 +14,38 @@ use App\Controller\AppController;
  * @method \App\Model\Entity\Board[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class BoardsController extends AppController
-{
+{   private $people;
+
+    public function initialize()
+    {
+        parent::initialize();
+        $this->people = TableRegistry::getTableLocator('People');
+    }
 
     /**
      * Index method
      *
      * @return \Cake\Http\Response|void
      */
+
     public function index($id = null)
+    {
+        $data = $this->Boards
+            ->find('all')
+            ->order(['Boards.id' => 'DESC'])
+            ->contain(['People']);
+        $this->set('data',$data);
+
+        /*$this->paginate = [
+            'contain' => ['People']
+        ];
+        $boards = $this->paginate($this->Boards);
+
+        $this->set(compact('boards'));*/
+    }
+
+
+   /* public function index($id = null)
     {
         $data = $this->Boards
         ->find('all')
@@ -31,8 +57,8 @@ class BoardsController extends AppController
         ];
         $boards = $this->paginate($this->Boards);
 
-        $this->set(compact('boards'));*/
-    }
+        $this->set(compact('boards'));
+    }*/
 
     /**
      * View method
