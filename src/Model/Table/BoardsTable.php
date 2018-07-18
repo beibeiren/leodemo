@@ -76,7 +76,6 @@ class BoardsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['person_id'], 'People'));
-
         return $rules;
     }
 }

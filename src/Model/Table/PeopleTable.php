@@ -9,7 +9,15 @@ use Cake\Validation\Validator;
 
 class PeopleTable extends Table {
 	public function initialize(array $config){
-		//$this->hasMany('Boards');//
+        parent::initialize($config);
+
+        $this->setTable('people');
+        $this->setDisplayField('name');
+        $this->setPrimaryKey('id');
+
+        $this->hasMany('Boards', [
+            'foreignKey' => 'person_id'
+        ]);
 	}
 
 
@@ -18,8 +26,6 @@ class PeopleTable extends Table {
 		$validator->notEmpty('name','必须项目');
 		$validator->integer('password','必须项目');
 		$validator->integer('comment','必须项目');
-
-
 		return $validator;
 	}
 
@@ -28,4 +34,12 @@ class PeopleTable extends Table {
 		$rules->isUnique(['name'], '登録');
 		return $rules;
 	}
+
+    public function checkNameAndPass($data){
+        $n = $this->find()
+            ->where(['name' => $data['name']])
+            ->andWhere(['password' => $data['password']])
+            ->count();
+        return $n > 0 ? true : false;
+    }
 }
