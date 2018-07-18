@@ -19,7 +19,7 @@ class BoardsController extends AppController
     public function initialize()
     {
         parent::initialize();
-        $this->people = TableLocator::get('People');
+        $this->people = TableRegistry::getTableLocator()->get('People');
     }
 
     /**

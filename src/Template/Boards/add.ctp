@@ -20,7 +20,7 @@
     <div class="error"><?=$this->Form->error('title') ?></div>
     <?=$this->Form->input('title',['type'=>'text']) ?>
     <div class="error"><?=$this->Form->error('content') ?></div>
-    <?=$this->Form->textarea('name',["content"]) ?>
+    <?=$this->Form->textarea('content',["content"]) ?>
 
 
  </fieldset>

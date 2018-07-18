@@ -39,7 +39,7 @@ class PeopleTable extends Table {
         $n = $this->find()
             ->where(['name' => $data['name']])
             ->andWhere(['password' => $data['password']])
-            ->count();
+            ->count();  
         return $n > 0 ? true : false;
     }
 }
