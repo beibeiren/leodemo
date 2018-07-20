@@ -126,7 +126,7 @@ class BoardsController extends AppController
      * @param string|null $id Board id.
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
+     *
     public function edit($id = null)
     {
         $board = $this->Boards->get($id, [
@@ -144,7 +144,7 @@ class BoardsController extends AppController
         $people = $this->Boards->People->find('list', ['limit' => 200]);
         $this->set(compact('board', 'people'));
     }
-
+    */
     /**
      * Delete method
      *
@@ -163,6 +163,47 @@ class BoardsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function show($param = 0){
+        $data = $this->Boards
+            ->find()
+            ->where(['Boards.id'=>$param])
+            ->contain(['People'])
+            ->first();
+        $this->set('data',$data);
+    }
+
+    public function show2($param = 0){
+        $data = $this->people->get($param);
+        $this->set('data',$data);
+    }
+
+    public function edit($param=0){
+        if ($this->request->isPut()){
+            $board = $this->Boards
+                ->find()
+                ->where(['Boards.id'=>$param])
+                ->contain(['People'])
+                ->first();
+        $board->title = $this->request->getData('title');
+        $board->content = $this->request->getData('content');
+        $board->person_id = $this->request->getData('person_id');
+        if(!$this->people->checkNameAndPass($this->request->getData())){
+            $this->Flash->error('名前かパスワードを確認ください。');
+        } else {
+            if($this->Boards->save($board)){
+                $this->redirect(['action' => 'index']);
+            }
+          }
+        } else {
+            $board = $this->Boards
+                ->find()
+                ->where(['Boards.id'=>$param])
+                ->contain(['People'])
+                ->first();
+        }
+        $this->set('entity',$board);
     }
 
 

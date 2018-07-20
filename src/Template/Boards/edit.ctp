@@ -4,30 +4,29 @@
  * @var \App\Model\Entity\Board $board
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $board->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $board->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Boards'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List People'), ['controller' => 'People', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Person'), ['controller' => 'People', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="boards form large-9 medium-8 columns content">
-    <?= $this->Form->create($board) ?>
-    <fieldset>
-        <legend><?= __('Edit Board') ?></legend>
-        <?php
-            echo $this->Form->control('person_id', ['options' => $people, 'empty' => true]);
-            echo $this->Form->control('title');
-            echo $this->Form->control('content');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+<h1>投稿者の編集</h1>
+<p><?=$this->Html->link(
+    '※一覧に戻る',
+    ['action' => 'index']
+) ?></p>
+<table>
+<fieldset>
+    <?=$this->Form->create($entity) ?>
+    <?=$this->Form->input('id',['type'=>'hidden']) ?>
+    <?=$this->Form->input('person_id',['type'=>'hidden']) ?>
+    <?=$this->Form->input('name',['type'=>'hidden',
+    'value'=>$entity['person']['name']]) ?>
+
+    <div class="error"><?=$this->Form->error('name') ?></div>
+    <div>名前:<?=$entity['person']['name'] ?></div>
+    <div class="error"><?=$this->Form->error('password') ?></div>
+    <div>パスワード:<?=$this->Form->password('password')?></div>
+    <div class="error"><?=$this->Form->error('title') ?></div>
+    <div>タイトル:<?=$this->Form->text('title') ?></div>
+    <div class="error"><?=$this->Form->error('content') ?></div>
+    <?=$this->Form->textarea("content")  ?>
+
+</fieldset>
+    <?= $this->Form->button(__('送信')) ?>
     <?= $this->Form->end() ?>
-</div>
+
