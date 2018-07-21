@@ -24,6 +24,10 @@
 
 
  </fieldset>
+
     <?= $this->Form->button("送信") ?>
     <?= $this->Form->end() ?>
+
+
+
 

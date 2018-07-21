@@ -205,6 +205,20 @@ class BoardsController extends AppController
         }
         $this->set('entity',$board);
     }
+    public function index2()
+    {
+
+    }
+
+    public function index3()
+    {
+        $data = $this->Boards
+            ->find('all')
+            ->order(['Boards.id' => 'DESC'])
+            ->contain(['People']);
+        $this->set('data',$data);
+    }
+
 
 
 }

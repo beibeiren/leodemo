@@ -9,7 +9,7 @@
     <tr><th width="25%">投稿者</th>
         <td><?=$data['name'] ?></td></tr>
     <tr><th width="25%">コメント</th>
-           <td><?=$data['comment'] ?></td></tr>
+        <td><?=$data['comment'] ?></td></tr>
 
 </table>
 
