@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\I18n\I18n;
 use Cake\ORM\TableRegistry;
 
 
@@ -14,12 +15,22 @@ use Cake\ORM\TableRegistry;
  */
 class BoardsController extends AppController
 {
-    public $people;
+    //public $people;
+    private $people;
+    public $paginate = [
+        'limit' => 5,
+        'order' => [
+            'id' => 'DESC'
+        ],
+        'contain' => ['People']
+
+    ];
 
     public function initialize()
     {
         parent::initialize();
         $this->people = TableRegistry::getTableLocator()->get('People');
+        I18n::setLocale('ja_JP');//
     }
 
     /**
@@ -30,12 +41,13 @@ class BoardsController extends AppController
 
     public function index($id = null)
     {
-        $data = $this->Boards
+        /* $data = $this->Boards
             ->find('all')
             ->order(['Boards.id' => 'DESC'])
-            ->contain(['People']);
+            ->contain(['People']); */
+        $data = $this->paginate($this->Boards);
         $this->set('data',$data);
-
+        $this->set('count',$data->count());
         /*$this->paginate = [
             'contain' => ['People']
         ];

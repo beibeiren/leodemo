@@ -1,12 +1,14 @@
-<h1>Boardsサンプル</h1>
+<h1><?=__('board') ?></h1>
 <p><?=$this->Html->link(
-    '※投稿する',
+    __('post'),
     ['action' => 'add']
 ) ?></p>
+
+<p><?=__('{0} post',$count) ?></p>
 <div>
 <table>
 <tr>
-<th width="25%">投稿者</th><th>タイトル</th>
+<th width="25%"><?=__('user') ?></th><th><?=__('title') ?></th>
 </tr>
 <?php foreach ($data as $obj):?>
     <tr>
@@ -23,4 +25,33 @@
 	<!--<pre><?php print_r($obj->toArray()) ?></pre>-->
 <?php endforeach; ?>
 </table>
+  <div class="paginator">
+  <ul class="pagination">
+      <?=$this->Paginator->first(' << first') ?>
+      <?=$this->Paginator->prev(' < prev') ?>
+      <?=$this->Paginator->next(' next >') ?>
+      <?=$this->Paginator->last(' last >>') ?>
+  </ul>
+  </div>
+  <div class="paginator">
+  <ul class="pagination">
+        <?=$this->Paginator->numbers() ?>
+
+  </ul>
+  </div>
+
+  <div class="paginator">
+        <ul class="pagination">
+            <?=$this->Paginator->numbers([
+            'before'=>$this->Paginator->first('<<') . '.',
+            'after'=>'.'. $this->Paginator->last('>>'),
+            'modulus'=>4,
+            'separator'=>'.'
+
+            ]) ?>
+
+  </ul>
+  </div>
+  
+
 </div>
