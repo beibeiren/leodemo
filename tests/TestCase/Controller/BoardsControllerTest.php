@@ -21,6 +21,16 @@ class BoardsControllerTest extends IntegrationTestCase
     ];
 
     /**
+     * Test initialize method
+     *
+     * @return void
+     */
+    public function testInitialize()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
      * Test index method
      *
      * @return void
@@ -51,6 +61,36 @@ class BoardsControllerTest extends IntegrationTestCase
     }
 
     /**
+     * Test delete method
+     *
+     * @return void
+     */
+    public function testDelete()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test show method
+     *
+     * @return void
+     */
+    public function testShow()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test show2 method
+     *
+     * @return void
+     */
+    public function testShow2()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
      * Test edit method
      *
      * @return void
@@ -61,11 +101,21 @@ class BoardsControllerTest extends IntegrationTestCase
     }
 
     /**
-     * Test delete method
+     * Test index2 method
      *
      * @return void
      */
-    public function testDelete()
+    public function testIndex2()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test index3 method
+     *
+     * @return void
+     */
+    public function testIndex3()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

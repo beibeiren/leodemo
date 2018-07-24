@@ -224,11 +224,9 @@ class BoardsController extends AppController
 
     public function index3()
     {
-        $data = $this->Boards
-            ->find('all')
-            ->order(['Boards.id' => 'DESC'])
-            ->contain(['People']);
+        $data = $this->paginate($this->Boards);
         $this->set('data',$data);
+        $this->set('count',$data->count());
     }
 
 

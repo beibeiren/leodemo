@@ -1,9 +1,13 @@
 <table>
-<?=$this->Html->tableHeaders(
+<tr>
+    <th><?=$this->Paginator->sort('Person.name','名前') ?></th>
+　　<th><?=$this->Paginator->sort('title','タイトル') ?></th>
+</tr>
+<!--<?=$this->Html->tableHeaders(
 ['投稿者','タイトル'],
 ['style'=>'color:#000066;background-color: #AAAAFF'],
 ['style'=>'color:#000066;background-color: #EEEEFF']
-); ?>
+); ?>-->
 <?php foreach ($data as $obj): ?>
 <?=$this->Html->tableCells(
   [$obj['person']['name'],$obj['title']],
