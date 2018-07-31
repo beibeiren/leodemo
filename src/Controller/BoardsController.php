@@ -39,21 +39,19 @@ class BoardsController extends AppController
      * @return \Cake\Http\Response|void
      */
 
-    public function index($id = null)
+    public function index()
     {
-        /* $data = $this->Boards
-            ->find('all')
-            ->order(['Boards.id' => 'DESC'])
-            ->contain(['People']); */
-        $data = $this->paginate($this->Boards);
-        $this->set('data',$data);
-        $this->set('count',$data->count());
-        /*$this->paginate = [
-            'contain' => ['People']
-        ];
-        $boards = $this->paginate($this->Boards);
-
-        $this->set(compact('boards'));*/
+        if($this->RequestHandler->isRss()){
+            $data = $this->Boards
+                         ->find()
+                         ->limit(10)
+                         ->order(['id' => 'DESC']);
+            $this->set(compact('data'));
+        } else {
+            $data = $this->paginate($this->Boards);
+            $this->set('data', $data);
+            $this->set('count', $data->count());
+        }
     }
 
 
@@ -227,6 +225,11 @@ class BoardsController extends AppController
         $data = $this->paginate($this->Boards);
         $this->set('data',$data);
         $this->set('count',$data->count());
+    }
+
+    public function index4()
+    {
+
     }
 
 

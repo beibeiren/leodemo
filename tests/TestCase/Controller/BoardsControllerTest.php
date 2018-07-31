@@ -3,6 +3,7 @@ namespace App\Test\TestCase\Controller;
 
 use App\Controller\BoardsController;
 use Cake\TestSuite\IntegrationTestCase;
+use Cake\ORM\TableRegistry;
 
 /**
  * App\Controller\BoardsController Test Case
@@ -37,7 +38,9 @@ class BoardsControllerTest extends IntegrationTestCase
      */
     public function testIndex()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/boards');
+        $this->assertResponseOK();
+        //$this->markTestIncomplete('Not implemented yet.');
     }
 
     /**
@@ -77,7 +80,9 @@ class BoardsControllerTest extends IntegrationTestCase
      */
     public function testShow()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/boards/show/1001');
+        $this->assertResponseOk();
+        //$this->markTestIncomplete('Not implemented yet.');
     }
 
     /**
@@ -118,5 +123,19 @@ class BoardsControllerTest extends IntegrationTestCase
     public function testIndex3()
     {
         $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    public function testAddPost(){
+        $data = [
+            'name' => 'test',
+            'password' => 'test',
+            'title' => 'test new title 1',
+            'content' => 'test new content 1'
+        ];
+        $this->post('/boards/add', $data);
+        $this->assertResponseSuccess();
+        $boards = TableRegistry::getTableLocator()->get('Boards');
+        $query = $boards->find()->where(['title' => $data['title']]);
+        $this->assertEquals(1,$query->count());
     }
 }

@@ -81,4 +81,12 @@ class BoardsTableTest extends TestCase
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
+
+    public function testBoardsTableFind(){
+        $result = $this->BoardsTable->find('all')->first();
+        $this->assertFalse(empty($result));
+        $this->assertTrue(is_a($result,'App\Model\Entity\Board'));
+        $this->assertEquals($result->id,1001);
+        $this->assertStringStartsWith('test title 1',$result->title);
+    }
 }
