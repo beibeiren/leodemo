@@ -38,5 +38,7 @@ class AppView extends View
     {
         $this->loadHelper('Rss');
         $this->loadHelper('Text');
+        $this->loadHelper('RgbText');
+
     }
 }

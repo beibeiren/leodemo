@@ -1,3 +1,8 @@
+<h1><?=$this->RgbText->redString('掲示板') ?></h1>
+<h1><?=$this->RgbText->greenString('掲示板') ?></h1>
+<h1><?=$this->RgbText->blueString('掲示板') ?></h1>
+
+
 <h1><?=__('board') ?></h1>
 <p><?=$this->Html->link(
     __('post'),
