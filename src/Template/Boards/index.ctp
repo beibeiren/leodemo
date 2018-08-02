@@ -30,19 +30,21 @@
 	<!--<pre><?php print_r($obj->toArray()) ?></pre>-->
 <?php endforeach; ?>
 </table>
+
+<?=$this->RgbText->blueLink('※トップに戻る','/') ?>
   <div class="paginator">
-  <ul class="pagination">
-      <?=$this->Paginator->first(' << first') ?>
-      <?=$this->Paginator->prev(' < prev') ?>
-      <?=$this->Paginator->next(' next >') ?>
-      <?=$this->Paginator->last(' last >>') ?>
-  </ul>
+      <ul class="pagination">
+          <?=$this->Paginator->first(' << first') ?>
+          <?=$this->Paginator->prev(' < prev') ?>
+          <?=$this->Paginator->next(' next >') ?>
+          <?=$this->Paginator->last(' last >>') ?>
+      </ul>
   </div>
   <div class="paginator">
-  <ul class="pagination">
-        <?=$this->Paginator->numbers() ?>
+      <ul class="pagination">
+            <?=$this->Paginator->numbers() ?>
 
-  </ul>
+      </ul>
   </div>
 
   <div class="paginator">
@@ -55,8 +57,11 @@
 
             ]) ?>
 
-  </ul>
+        </ul>
   </div>
-  
 
 </div>
+
+<?=$this->RgbText->blueLink('※トップに戻る','/') ?>
+
+<?php echo $this->element('SampleBanner'); ?>

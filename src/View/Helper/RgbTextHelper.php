@@ -3,7 +3,11 @@ namespace App\View\Helper;
 
 use Cake\View\Helper;
 
+
+
 class RgbTextHelper extends Helper {
+
+    public $helpers = ['Html'];
 
     public function initialize(array $config) {
         parent::initialize($config);
@@ -26,5 +30,20 @@ class RgbTextHelper extends Helper {
            color:#FFFFFF\">
            {$str}</span>";
     }
+
+
+    public function redLink($str,$url){
+        $style = "background-color:red; color:white";
+        return $this->Html->link($str,$url,['style'=>$style]);
+    }
+    public function greenLink($str,$url){
+        $style = "background-color:green; color:green";
+        return $this->Html->link($str,$url,['style'=>$style]);
+    }
+    public function blueLink($str,$url){
+        $style = "background-color:blue; color:green";
+        return $this->Html->link($str,$url,['style'=>$style]);
+    }
+
 
 }
